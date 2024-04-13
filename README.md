@@ -12,10 +12,10 @@
 > *Vous devez créer un programme appelé "inquisitor" avec les caractéristiques suivantes :*
 > * *Il doit être développé pour la plateforme Linux.*
 > * *Il doit prendre au moins ces 4 paramètres :*
->   - *<IP-source>*
->   - *<MAC-source>*
->   - *<IP-cible>*
->   - *<MAC-cible>*
+>   - *\<IP-source>*
+>   - *\<MAC-source>*
+>   - *\<IP-cible>*
+>   - *\<MAC-cible>*
 > * *Le programme doit uniquement fonctionner avec des adresses IPv4.*
 > * *Le programme ne doit jamais s'arrêter de façon inattendue et doit gérer toutes les erreurs d'entrée.*
 >
