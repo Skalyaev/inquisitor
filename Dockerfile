@@ -1,4 +1,4 @@
-FROM    debian:latest
+FROM debian:latest
 
 RUN apt-get update -y \
     && apt-get install g++ -y \
@@ -10,11 +10,11 @@ RUN apt-get update -y \
     && mkdir /root/inquisitor
 
 WORKDIR /root
-COPY    include inquisitor/include
-COPY    src inquisitor/src
-COPY    Makefile inquisitor/Makefile
+COPY include inquisitor/include
+COPY src inquisitor/src
+COPY Makefile inquisitor/Makefile
 
 WORKDIR /root/inquisitor
-RUN     make
+RUN make
 
-CMD     ["sleep", "infinity"]
+CMD ["sleep", "infinity"]

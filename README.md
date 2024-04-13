@@ -1,51 +1,81 @@
-# Inquisitor
+# <p align="center">inquisitor</p>
+> *Projet d'introduction à la compréhension du réseau d'un point de vue bas niveau.*
+>
+> *Le modèle OSI est l'architecture suivie par les réseaux informatiques du monde entier. Il se compose de 7 couches, chacune d'entre elles comportant des risques et étant exposée à différents types de vulnérabilités et d'exploits.*
+>
+> *Au niveau réseau, il existe des éléments chargés de décider de la direction à prendre par le trafic. Chaque réseau local dispose d'une passerelle par défaut, qui reçoit le trafic externe et le distribue entre ses nœuds. Cette passerelle est aussi généralement appelée routeur.*
+>
+> *Si un nœud de réseau parvient à se faire passer pour la passerelle, il peut prendre le contrôle du trafic, l'intercepter et décider vers qui le rediriger, ainsi que le modifier ou le bloquer.*
+>
+>*Le spoofing ARP peut également être utilisé de manière légitime, par exemple pour rediriger les nouvelles connexions vers une page d'enregistrement avant d'utiliser un réseau, comme c'est le cas dans les réseaux "portes ouvertes" des aéroports, des cafétérias et autres lieux publics.*
+>
+> *Vous devez créer un programme appelé "inquisitor" avec les caractéristiques suivantes :*
+> * *Il doit être développé pour la plateforme Linux.*
+> * *Il doit prendre au moins ces 4 paramètres :*
+>   - *<IP-source>*
+>   - *<MAC-source>*
+>   - *<IP-cible>*
+>   - *<MAC-cible>*
+> * *Le programme doit uniquement fonctionner avec des adresses IPv4.*
+> * *Le programme ne doit jamais s'arrêter de façon inattendue et doit gérer toutes les erreurs d'entrée.*
+>
+> *Votre programme doit effectuer plusieurs actions décrites ci-dessous :*
+> * *Il doit être capable d'effectuer un empoisonnement ARP dans les deux sens (full duplex).*
+> * *Lorsque l'attaque est stoppée (CTRL+C), les tables ARP seront restaurées.*
+>
+> *Votre programme doit également être capable d'afficher en temps réel les noms des fichiers échangés entre un client et un serveur FTP.*
 
-*ARP Poisoning.*
+## Install
+```bash
+sudo apt update -y
+sudo apt install -y make
+sudo apt install -y docker.io
+```
+```bash
+link=Skalyaeve/inquisitor
+name=inquisitor
 
-The so-called OSI model is the architecture followed by computer networks from all over the planet.
-It consists of 7 layers, each of which carries risks and is exposed to different types of vulnerabilities and forms of exploitation.
-At the network level, there are elements in charge of deciding where to direct the traffic.
-Every local network has a default gateway, which receives external traffic and distributes it among its nodes.
-This gateway is usually also known as router.
-If a network node is able to impersonate the gateway, it can take control of the traffic, intercept it and decide who to forward it to, as well as being able to modify or block it.
-ARP spoofing can also be used legitimately, for example to redirect new connections to a registration page before using a network, as is common in networks open doors of airports, cafeterias and other public places.
+git clone https://github.com/$link.git $name
+cd $name && sudo make docker
+```
 
 ## Usage
-```sh
-sudo apt update
-sudo apt install git make docker.io
-git clone git@github.com:Skalyaeve/inquisitor.git
-cd inquisitor
-sudo make docker
+```bash
 sudo docker exec -it inquisitor bash
 ```
-```sh
+```bash
 ping -c 1 client
 ping -c 1 server
+
 mac1=$(arp -a | grep client | awk '{print $4}')
 ip1=$(arp -a | grep client | awk '{print $2}' | sed 's/[()]//g')
+
 mac2=$(arp -a | grep server | awk '{print $4}')
 ip2=$(arp -a | grep server | awk '{print $2}' | sed 's/[()]//g')
+
 ./Inquisitor -v $mac1 $ip1 $mac2 $ip2
 ```
-> Open new terminals for server and client.
-```sh
+- Ouvre un nouveau terminal pour le server
+```bash
 sudo docker exec -it server bash
 ```
-```sh
+```bash
 arp -a
 nc -vlnp 4242
 ```
+- Ouvre un nouveau terminal pour le client
 ```sh
 sudo docker exec -it client bash
 ```
 ```sh
 arp -a
-nc server 4242 # then speak to the server
+nc server 4242
+# envoie un message
 ```
-> Inquisitor will show the traffic between the client and the server.
+- Inquisitor affiche le traffic entre le client et le server
 
-```sh
+```bash
 sudo make docker-stop
-sudo make docker-fclean
+sudo make docker-clean
 ```
+
