@@ -1,4 +1,4 @@
-NAME=Inquisitor
+NAME=inquisitor
 CC=c++ -Wall -Werror -Wextra -g
 
 INCLUDE_DIR=include

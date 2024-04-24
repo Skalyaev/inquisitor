@@ -32,11 +32,8 @@ sudo apt install -y make
 sudo apt install -y docker.io
 ```
 ```bash
-link=Skalyaeve/inquisitor
-name=inquisitor
-
-git clone https://github.com/$link.git $name
-cd $name && sudo make docker
+git clone https://github.com/Skalyaeve/inquisitor.git
+cd inquisitor && sudo make docker
 ```
 
 ## Usage
