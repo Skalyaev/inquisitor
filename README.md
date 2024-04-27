@@ -22,8 +22,6 @@
 > *Votre programme doit effectuer plusieurs actions décrites ci-dessous :*
 > * *Il doit être capable d'effectuer un empoisonnement ARP dans les deux sens (full duplex).*
 > * *Lorsque l'attaque est stoppée (CTRL+C), les tables ARP seront restaurées.*
->
-> *Votre programme doit également être capable d'afficher en temps réel les noms des fichiers échangés entre un client et un serveur FTP.*
 
 ## Install
 ```bash
