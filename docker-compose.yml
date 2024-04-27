@@ -17,6 +17,9 @@ services:
       dockerfile: Dockerfile
     networks:
       - inquisitor
+    ports:
+      - "20:20"
+      - "21:21"
 
   client:
     image: client

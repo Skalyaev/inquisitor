@@ -50,7 +50,7 @@ ip1=$(arp -a | grep client | awk '{print $2}' | sed 's/[()]//g')
 mac2=$(arp -a | grep server | awk '{print $4}')
 ip2=$(arp -a | grep server | awk '{print $2}' | sed 's/[()]//g')
 
-./Inquisitor -v $mac1 $ip1 $mac2 $ip2
+./inquisitor -v $mac1 $ip1 $mac2 $ip2
 ```
 - Ouvre un nouveau terminal pour le server
 ```bash
